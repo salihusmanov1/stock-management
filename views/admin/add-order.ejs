@@ -1,0 +1,165 @@
+<%- include('../includes/admin-nav.ejs') %>
+    <!-- <div class="pg-header">
+        <div class="pagetitle">
+
+        </div>
+    </div> -->
+
+    <section class="section">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="card">
+                    <div class="card-title text-center">
+                        <h3>
+                            <%= pageTitle %>
+                        </h3>
+                    </div>
+                    <div class="card-body">
+                        <form class="add-item-form m-5" action="/admin/add-order" method="POST">
+                            <div class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label class="col-sm-6 col-form-label">Customer Name</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Active</option>
+                                            <option value="2">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="col-sm-6 col-form-label">Warehouse</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Active</option>
+                                            <option value="2">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="inputDate" class="col-sm-12 col-form-label">Date</label>
+                                    <div class="col-sm-12">
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="inputDate" class="col-sm-12 col-form-label">Expected Delivery
+                                        Date</label>
+                                    <div class="col-sm-12">
+                                        <input type="date" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="border border-info mt-3 mb-3">
+                                    <table id="items" class="hover row-border border" cellspacing="0" width="100%">
+
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Item code</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Warehouse</th>
+                                                <th scope="col">Status</th>
+                                                <th scope="col" id="action"></th>
+                                                <!-- <th scope="col">Data</th>
+                                                                    <th scope="col">Quantity</th> -->
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+
+                                <div class="col-md-3 mb-3">
+                                    <label class="col-sm-6 col-form-label">Status</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Active</option>
+                                            <option value="2">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label class="col-sm-6 col-form-label">Payment Status</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Active</option>
+                                            <option value="2">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="recipient-amount" class="col-form-label">Amount</label>
+                                    <input type="number" class="form-control" name="amount" id="amount">
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="recipient-discount" class="col-form-label">Discount %</label>
+                                    <input type="number" class="form-control" name="discount" id="discount">
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <label class="col-sm-6 col-form-label">Type of Payment</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Active</option>
+                                            <option value="2">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="recipient-tax" class="col-form-label">Tax</label>
+                                    <input type="number" class="form-control" name="tax" id="tax">
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="recipient-delivery" class="col-form-label">Delivery</label>
+                                    <input type="number" class="form-control" name="delivery" id="delivery">
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $.noConflict();
+            document.getElementById('action').hidden = true;
+            var dataSet = [];
+            {
+            }
+            $.ajax({
+                url: 'http://localhost:3000/admin/items-json',
+                dataType: "json",
+                error: function (request) {
+                    alert("Error " + request);
+                },
+                success: function (array) {
+                    for (var i = 0; i < array.length; i++) {
+                        dataSet.push([array[i]._id
+                            , array[i].name
+                            , array[i].description
+                            , array[i].userId
+                            , '<button type="button" class="btn"><i class="fa fa-plus"></i></button>'
+                        ]);
+                    }
+                    var table = $('#items').DataTable({
+                        data: dataSet,
+                        responsive: true,
+                        scrollX: 200,
+                        language: {
+                            searchPlaceholder: "Search",
+                            search: "",
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+
+
+    <%- include('../includes/end.ejs') %>

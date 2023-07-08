@@ -1,0 +1,43 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/login.css" />
+    </head>
+
+    <body>
+        <main>
+            <div class="container" id="container">
+                <div class="form-container sign-up-container">
+
+                    <div class="logo"><img src="/images/signin-signup/logo.png" alt="#"></div>
+                    <div class="breedcrums">
+                        <h1>Sign in <span class="line-breaker">/</span><span class="none-active">Sign up</span></h1>
+                    </div>
+                    <a href="/signup"><span class="no-account">Don’t have an account?</span></a>
+                    <!-- <span>or use your account</span> -->
+                    <form class="login-form" action="/login" method="POST">
+                        <input type="email" name="email" id="email" placeholder="Email" />
+                        <input type="password" name="password" id="password" placeholder="Password" />
+                        <label class="container2">Keep me Signed In
+                            <input class="checktiredme" type="checkbox">
+
+                        </label>
+                        <a class="forget-password" href="#">Forgot your password?</a>
+                        <button class="sign-in-btn">Sign In</button>
+                        <div class="social-container">
+                            <a href="#" class="social"><img src="/images/signin-signup/facebook.png" alt=""></a>
+                            <a href="#" class="social"><img src="/images/signin-signup/google.png" alt=""></a>
+                            <a href="#" class="social"><img src="/images/signin-signup/linkedin.png" alt=""></a>
+                        </div>
+                    </form>
+                </div>
+                <div class="overlay-container">
+                    <div class="overlay">
+                        <div class="overlay-panel overlay-left">
+                            <h1>New Here?</h1>
+                            <p>Sign Up and discover a great amount of new opportunities</p>
+                            <a href="/signup"><button class="ghost" id="signUp">Sign up</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <%- include('../includes/end.ejs') %>

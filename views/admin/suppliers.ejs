@@ -1,0 +1,125 @@
+<%- include('../includes/admin-nav.ejs') %>
+
+
+
+    <div class="pg-header">
+        <div class="pagetitle">
+            <h1>
+                <%= pageTitle %>
+            </h1>
+        </div>
+        <h5 class="d-flex justify-content-end"><button class="new-btn" type="button" data-bs-toggle="modal"
+                data-bs-target="#new-suppliers""><i class=" fa-solid fa-circle-plus"></i>New Supplier</button>
+        </h5>
+    </div>
+    <div class="modal fade" id="new-suppliers" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title col-md-6 ms-2">New Supplier</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="category-form" action="/admin/add-supplier" method="POST">
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Name & Surname
+                            </label>
+                            <input type="text" class="form-control" name="name" id="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-phone" class="col-form-label">Phone</label>
+                            <input type="text" class="form-control" name="phone" id="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-email" class="col-form-label">Email
+                            </label>
+                            <input type="email" class="form-control" name="email" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-country" class="col-form-label">Country
+                            </label>
+                            <input type="text" class="form-control" name="country" id="country">
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="save-btn">Save</button>
+                    </form>
+                    <button type="button" class="cancel-btn" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="section">
+        <div class="row align-items-top">
+
+
+            <div class="col-lg-12">
+                <div class="card-dashboard">
+                    <div class="card-body">
+                        <div class="card">
+
+                            <table id="supplier" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Supplier Code</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Country</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Phone</th>
+
+                                        <!-- <th scope="col">Data</th>
+                                    <th scope="col">Quantity</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $.noConflict();
+            var dataSet = [];
+            {
+            }
+            $.ajax({
+                url: 'http://localhost:3000/admin/supplier-json',
+                dataType: "json",
+                error: function (request) {
+                    alert("Error " + request);
+                },
+                success: function (array) {
+                    for (var i = 0; i < array.length; i++) {
+                        dataSet.push([array[i]._id
+                            , array[i].name
+                            , array[i].country
+                            , array[i].email
+                        ]);
+                    }
+                    var table = $('#supplier').DataTable({
+                        data: dataSet,
+                        responsive: true,
+                        scrollX: 200,
+                    });
+                }
+            });
+        });
+    </script>
+
+    <%- include('../includes/end.ejs') %>

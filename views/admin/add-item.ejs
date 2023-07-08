@@ -1,0 +1,115 @@
+<%- include('../includes/admin-nav.ejs') %>
+    <section class="section">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="card">
+                    <div class="card-title text-center border-bottom">
+                        <h3>
+                            <%= pageTitle %>
+                        </h3>
+                    </div>
+                    <form class="add-item-form m-5" action="/admin/add-item" method="POST">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="row mb-3">
+                                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="name" id="name">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="unit" class="col-sm-2 col-form-label">Unit</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="unit" id="unit">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label">Sub Category</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-select" name="subCategory" id="subCategory">
+                                                <% if (sub.length> 0) { %>
+                                                    <% for (let subCategory of sub) { %>
+                                                        <option value="<%= subCategory._id %>">
+                                                            <%= subCategory.name %>
+                                                        </option>
+                                                        <% } %>
+                                                            <% } %>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="brandName" class="col-sm-2 col-form-label">Brand Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="brandName" id="brandName">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label for="manufacturer" class="col-sm-2 col-form-label">Manufacturer</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="manufacturer"
+                                                id="manufacturer">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
+                                        <label class="col-sm-2 col-form-label">Warehouse</label>
+                                        <div class="col-sm-8">
+                                            <select class="form-select" name="warehouse" id="warehouse">
+                                                <% if (houses.length> 0) { %>
+                                                    <% for (let warehouse of houses) { %>
+                                                        <option value="<%= warehouse._id %>">
+                                                            <%= warehouse.name %>
+                                                        </option>
+                                                        <% } %>
+                                                            <% } %>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="upc" class="col-sm-2 col-form-label">UPC</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="upc" id="upc">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="sellingPrice" class="col-sm-2 col-form-label">Selling Price</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="sellingPrice"
+                                                id="sellingPrice">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="costPrice" class="col-sm-2 col-form-label">Cost Price</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="costPrice" id="costPrice">
+                                        </div>
+                                    </div>
+                                    <div class="row mb-3">
+                                        <label for="description" class="col-sm-2 col-form-label">Description</label>
+                                        <div class="col-sm-10">
+                                            <textarea class="form-control" style="height: 100px" name="description"
+                                                id="description"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <input class="form-control" type="file" id="formFile">
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="save-btn">Save</button>
+                                <a href="/admin/items">
+                                    <button type="button" class="cancel-btn">Cancel</button>
+                                </a>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <%- include('../includes/end.ejs') %>

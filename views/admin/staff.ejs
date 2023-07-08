@@ -1,0 +1,176 @@
+<%- include('../includes/admin-nav.ejs') %>
+
+
+    <div class="pg-header">
+        <div class="pagetitle">
+            <h1>
+                <%= pageTitle %>
+            </h1>
+        </div>
+        <h5 class="d-flex justify-content-end"><button class="new-btn" type="button" data-bs-toggle="modal"
+                data-bs-target="#new-staff""><i class=" fa-solid fa-circle-plus"></i>New Staff</button>
+        </h5>
+    </div>
+
+    <div class="modal fade" id="new-staff" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title col-md-6 ms-2">New Staff</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="category-form" action="/admin/add-staff" method="POST">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="recipient-Id" class="col-form-label">Employee ID</label>
+                                    <input type="text" class="form-control" name="Id" id="Id">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="col-sm-2 col-form-label">Status</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Active</option>
+                                            <option value="2">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="recipient-name" class="col-form-label">Name & Surname:</label>
+                                    <input type="text" class="form-control" name="name" id="name">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="recipient-email" class="col-form-label">Email
+                                    </label>
+                                    <input type="email" class="form-control" name="email" id="email">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="recipient-phone" class="col-form-label">Phone
+                                        Number:</label>
+                                    <input type="text" class="form-control" name="phone" id="phone">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="col-sm-2 col-form-label">Position</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Saleman</option>
+                                            <option value="2">Manager</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="recipient-birth-date" class="col-form-label">Birth Date
+                                        :</label>
+                                    <input type="date" class="form-control" name="birth-date" id="birth-date">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="recipient-address" class="col-form-label">Address:</label>
+                                    <input type="text" class="form-control" name="address" id="address">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="recipient-password" class="col-form-label">Password
+                                    </label>
+                                    <input type="password" class="form-control" name="password" id="password">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="recipient-confirm" class="col-form-label">Confirm Password
+                                    </label>
+                                    <input type="password" class="form-control" name="password-con" id="password-con">
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="col-sm-2 col-form-label">Gender</label>
+                                    <div class="col-sm-12">
+                                        <select class="form-select" aria-label="Default select example">
+                                            <option value="1">Male</option>
+                                            <option value="2">Female</option>
+                                            <option value="3">Salih</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="save-btn">Save</button>
+                    </form>
+                    <button type="button" class="cancel-btn" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+
+        <div class="row align-items-top">
+
+            <div class="col-lg-12">
+                <div class="card-dashboard">
+                    <div class="card">
+
+                        <table id="items" class="hover row-border" cellspacing="0" width="100%">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Item code</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Warehouse</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col" id="action"></th>
+                                    <!-- <th scope="col">Data</th>
+                                    <th scope="col">Quantity</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $.noConflict();
+            document.getElementById('action').hidden = true;
+            var dataSet = [];
+            {
+            }
+            $.ajax({
+                url: 'http://localhost:3000/admin/items-json',
+                dataType: "json",
+                error: function (request) {
+                    alert("Error " + request);
+                },
+                success: function (array) {
+                    for (var i = 0; i < array.length; i++) {
+                        dataSet.push([array[i]._id
+                            , array[i].name
+                            , array[i].description
+                            , array[i].userId
+                            , '<button type="button" class="btn"><i class="fa fa-plus"></i></button>'
+                        ]);
+                    }
+                    var table = $('#items').DataTable({
+                        data: dataSet,
+                        responsive: true,
+                        scrollX: 200,
+                        language: {
+                            searchPlaceholder: "Search",
+                            search: "",
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+
+    <%- include('../includes/end.ejs') %>

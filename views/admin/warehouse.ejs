@@ -1,0 +1,90 @@
+<%- include('../includes/admin-nav.ejs') %>
+
+
+
+    <div class="pg-header">
+        <div class="pagetitle">
+            <h1>
+                <%= pageTitle %>
+            </h1>
+        </div>
+
+
+        <a href="/admin/add-warehouse">
+            <h5 class=" d-flex justify-content-end"><button type="button" class="new-btn"><i
+                        class="fa-solid fa-circle-plus"></i>New Warehouse</button>
+            </h5>
+        </a>
+
+    </div>
+
+
+
+    <section class="section">
+        <div class="row align-items-top">
+
+
+            <% if (houses.length> 0) { %>
+                <div class="col-lg-6">
+                    <% for (let warehouse of houses) { %>
+                        <div class="card mb-12 ">
+                            <div class="row g-0">
+                                <div class="col-md-4">
+                                    <img src="/images/admin/background.png" class="img-fluid rounded-start" alt="...">
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <div class="card-title d-flex align-items-center justify-content-between">
+                                            <p style="margin: 0; font-weight: 600;">
+                                                <%= warehouse.name %>
+                                            </p>
+                                            <div class="d-flex align-items-center">
+                                                <button type="button" class="save-btn">Edit</button>
+                                                <div class="dropdown">
+                                                    <button type="button" class="cancel-btn dropdown-toggle"
+                                                        data-bs-toggle="dropdown">
+                                                        <i class="fa fa-gear"></i>
+                                                    </button>
+                                                    <ul
+                                                        class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                                                        <li class="dropdown-item d-flex align-items-center">
+                                                            <form method="POST" action="delete-warehouse">
+                                                                <input type="hidden" value="<%= warehouse._id %>"
+                                                                    name="warehouseId">
+                                                                <button type="submit" class="btn">Delete</button>
+                                                            </form>
+                                                        </li>
+                                                        <li class="dropdown-item d-flex align-items-center">
+                                                            <form method="POST" action="delete-warehouse">
+                                                                <input type="hidden" value="<%= warehouse._id %>"
+                                                                    name="warehouseId">
+                                                                <button type="submit" class="btn">Delete</button>
+                                                            </form>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class="card-text">
+                                            <%= warehouse.street %>
+
+                                        </p>
+                                        <P>
+                                            <%= warehouse.country %>, <%= warehouse.city %>
+                                        </P>
+                                        <P>
+                                            <%= warehouse.zipcode %>, <%= warehouse.phone %>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
+
+                </div>
+                <% } %>
+        </div>
+    </section>
+    <!-- End of Card -->
+
+    <%- include('../includes/end.ejs') %>

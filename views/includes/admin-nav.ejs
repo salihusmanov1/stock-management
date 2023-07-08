@@ -1,0 +1,257 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/dashboard-main.css">
+    <link rel="stylesheet" href="/css/table.css">
+    </head>
+
+    <!-- <div class="container-fluid h-100"> -->
+
+    <!-- Navigation links in sidebar-->
+    <header id="header" class="header d-flex align-items-center">
+
+        <div class="search-bar">
+            <form class="search-form d-flex align-items-center" method="POST" action="">
+                <i class="fa fa-search"></i><input type="text" name="search" id="search" placeholder="Search"
+                    title="Enter search keyword">
+                <button type="submit" title="Search"><img src="/images/admin/Shortcut.png" class="search-bar-icon"
+                        alt=""></button>
+            </form>
+        </div><!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+                <li class="nav-item d-block d-lg-none">
+                    <a class="nav-link nav-icon search-bar-toggle " href="#">
+                        <!-- <img src="/images/admin/Shortcut.png" class="sidebar_icon" alt=""> -->
+                    </a>
+                </li><!-- End Search Icon-->
+
+                <li class="nav-item pe-3">
+                    <span class="d-none d-md-block ps-2">Nael Alyousefi </span>
+                </li>
+                <li class=" nav-item dropdown pe-3">
+                    <a class=" nav-link nav-profile d-flex align-items-center dropdown-toggle ps-2" href="#"
+                        data-bs-toggle="dropdown">
+                        <img class="dropdown-toggle" src=" /images/admin/admin-pic.png" alt="Profile">
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Nael Alyousefi</h6>
+                            <span>Web Designer</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="fa fa-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                                <i class="fa fa-gear"></i>
+                                <span>Account Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="pages-faq.html">
+                                <i class="fa fa-question-circle"></i>
+                                <span>Need Help?</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="fa fa-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <div class="vr"></div>
+                <li class="nav-item pe-3">
+                    <span class="d-none d-md-block ps-2">Admin</span>
+                </li><!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+
+    <!-- ======= Sidebar ======= -->
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+            <li class="nav-item">
+                <div class="d-flex align-items-center justify-content-between">
+                    <a href="/admin/dashboard" class="logo d-flex align-items-center">
+                        <img src="/images/admin/BandW-removedbg.png" alt="">
+                    </a>
+                    <!-- <i class="fa fa-list toggle-sidebar-btn"></i> -->
+                </div>
+            </li>
+            <!-- End Logo -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed<%= path === '/admin/dashboard' ? 'active' : '' %>"
+                    href=" /admin/dashboard">
+                    <img src="/images/admin/dashboard.png" class="sidebar_icon" alt="">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#sales-nav" data-bs-toggle="collapse" href="#">
+                    <img src="/images/admin/sale.png" class="sidebar_icon" alt="">
+                    <span>Sales</span><i class="fa-solid fa-chevron-down ms-auto"></i>
+                </a>
+                <ul id="sales-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="<%= path === '/admin/order' ? 'active' : '' %>" href="/admin/order">
+                            <span>Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<%= path === '/admin/customers' ? 'active' : '' %>" href="/admin/customers">
+                            <span>Customers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<%= path === '/admin/sales_return' ? 'active' : '' %>" href="/admin/sales_return">
+                            <span>Sales Return</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<%= path === '/admin/sales_invoice' ? 'active' : '' %>" href="/admin/sales_invoice">
+                            <span>Sales Invoice</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <!-- End sales Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#purchase-nav" data-bs-toggle="collapse" href="#">
+                    <img src="/images/admin/production.png" class="sidebar_icon" alt="">
+                    <span>Purchase</span><i class="fa-solid fa-chevron-down ms-auto"></i>
+                </a>
+                <ul id="purchase-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="<%= path === '/admin/suppliers' ? 'active' : '' %>" href="/admin/suppliers">
+                            <span>Suppliers</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<%= path === '/admin/purchase_order' ? 'active' : '' %>" href="/admin/purchase_order">
+                            <span>Purchase Orders</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<%= path === '/admin/product_return' ? 'active' : '' %>" href="/admin/product_return">
+                            <span>Product Return</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#inventory-nav" data-bs-toggle="collapse" href="#">
+                    <img src="/images/admin/trolley.png" class="sidebar_icon" alt="">
+                    <span>Inventory</span><i class="fa-solid fa-chevron-down ms-auto"></i>
+                </a>
+                <ul id="inventory-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                    <li>
+                        <a class="<%= path === '/admin/items' ? 'active' : '' %>" href="/admin/items">
+                            <span>Items</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<%= path === '/admin/category' ? 'active' : '' %>" href="/admin/category">
+                            <span>Category</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<%= path === '/admin/warehouse' ? 'active' : '' %>" href="/admin/warehouse">
+                            <span>Warehouse</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<%= path === '/admin/stock' ? 'active' : '' %>" href="/admin/stock">
+                            <span>Stock</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="<%= path === '/admin/staff' ? 'active' : '' %>" href="/admin/staff">
+                            <span>Staff</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <div class="side-footer">
+                <hr style="width: 220px;">
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed <%= path === '/admin/company_profile' ? 'active' : '' %>"
+                        href="/admin/users">
+                        <img src="/images/admin/user.png" class="sidebar_icon" alt="">
+                        <span>User</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#settings-nav" data-bs-toggle="collapse" href="#">
+                        <img src="/images/admin/settings.png" class="sidebar_icon" alt=""><span>Settings</span><i
+                            class="fa-solid fa-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="settings-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a class="<%= path === '/admin/company_profile' ? 'active' : '' %>"
+                                href="/admin/company_profile">
+                                <span>Company Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="<%= path === '/admin/currency' ? 'active' : '' %>" href="/admin/currency">
+                                <span>Currency</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="<%= path === '/admin/user_permission' ? 'active' : '' %>"
+                                href="/admin/user_permission">
+                                <span>User Premissions</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="<%= path === '/admin/quantity' ? 'active' : '' %>" href="/admin/quantity">
+                                <span>Quantity</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <form action="/logout" method="post">
+                        <a class="nav-link collapsed"><img src="/images/admin/log-out.png" class="sidebar_icon" alt="">
+                            <button type="submit" class="logout-btn">Log out</button></a>
+                    </form>
+                </li>
+            </div>
+        </ul>
+
+    </aside><!-- End Sidebar-->
+
+    <main id="main" class="main">
+
+       

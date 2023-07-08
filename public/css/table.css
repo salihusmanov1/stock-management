@@ -1,0 +1,112 @@
+table thead th {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 18px;
+    color: rgba(0, 0, 0, 0.8);
+
+}
+
+.table thead {
+    padding: 10px 0 !important;
+    background-color: rgba(217, 217, 217, 0.39);
+    height: 48px;
+}
+
+.table tr {
+    vertical-align: middle;
+    text-align: center;
+}
+
+tbody td, tbody th {
+    padding: 15px 40px !important;
+}
+
+
+
+
+.dataTables_wrapper .dataTables_filter {
+    margin: 20px 0;
+    float: left;
+    padding-left: 50px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    background: white;
+    border-radius: 10px;
+    width: 300px;
+}
+
+.dataTables_wrapper .dataTables_length {
+    margin: 20px 0;
+    float: right;
+    padding-right: 80px;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border-radius: 10px;
+}
+
+.dataTables_wrapper .dataTables_scrollBody .dataTable {
+    padding: 0 50px;
+    text-align: center;
+}
+
+.dataTables_wrapper .dataTables_scrollBody tbody td {
+    padding: 15px 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 150%;
+    color: #212529;
+}
+
+.dataTables_wrapper .dataTables_scrollHeadInner .sorting {
+    background-color: #F0F0F0;
+    text-align: center;
+    border-style: none;
+    padding: 15px 0;
+
+}
+
+.dataTables_wrapper .dataTables_scrollHeadInner .dataTable {
+    padding-right: 120px;
+}
+
+.dataTables_wrapper .dataTables_scrollHeadInner {
+    background-color: #F0F0F0;
+}
+
+.dataTables_wrapper tr th {
+    font-style: normal;
+    font-weight: 400 !important;
+    font-size: 15px;
+    line-height: 18px;
+
+    color: rgba(0, 0, 0, 0.8);
+
+}
+
+.dataTables_wrapper .dataTables_info {
+    margin: 20px 0;
+    padding-left: 50px;
+}
+
+.dataTables_wrapper .dataTables_paginate {
+    margin: 20px 0;
+    padding-right: 80px;
+}
+
+/* .dataTables_wrapper .dataTables_info {
+    
+} */
+
+.dataTables_wrapper .dataTables_paginate .current {
+    border-style: none !important;
+    border-radius: 10px;
+    background-color: #27ABE5 !important;
+}
+
+.dataTables_wrapper .dataTables_paginate span {
+    color: white !important;
+
+}

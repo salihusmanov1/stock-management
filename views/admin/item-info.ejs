@@ -1,0 +1,126 @@
+<%- include('../includes/admin-nav.ejs') %>
+
+    <section class="section">
+        <form class="add-item-form m-5" action="/admin/add-item" method="POST">
+            <div class="row">
+                <div class="col-7">
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label for="name" class="col-form-label" style="color: #000;">Item Name:</label>
+                        </div>
+                        <div class="col-auto w-50 my-3">
+                            <h6 for="name" class="col-form-label" style="color: #000;">Item Name:</h6>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label for="category" class="col-form-label" style="color: #000;">Category</label>
+                        </div>
+                        <div class="col-auto w-50 my-3">
+                            <select name="category" id="category" class="form-control">
+                                <option value="">Category1</option>
+                                <option value="">Category2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label for="subCategory" class="col-form-label" style="color: #000;">Sub category</label>
+                        </div>
+                        <div class="col-auto w-50 my-3">
+                            <select name="subCategory" id="subCategory" class="form-control">
+                                <option value="">sub1</option>
+                                <option value="">sub2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label for="brandName" class="col-form-label" style="color: #000;">Brand Name:</label>
+                        </div>
+                        <div class="col-auto w-50 my-3">
+                            <input type="text" class="form-control" name="brandName" id="brandName">
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label for="manufacturer" class="col-form-label" style="color: #000;">Manufacturer:</label>
+                        </div>
+                        <div class="col-auto w-50 my-3">
+                            <input type="text" class="form-control" name="manufacturer" id="manufacturer">
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label class="col-form-label" style="color: #000;">Warehouse:</label>
+                        </div>
+                        <div class="col-auto w-50 my-3">
+                            <select name="warehouse" id="warehouse" class="form-control">
+                                <option value="">warehouse1</option>
+                                <option value="">warehouse2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label for="upc" class="col-form-label" style="color: #000;">UPC:</label>
+                        </div>
+                        <div class="col-auto w-50 my-3">
+                            <input type="text" class="form-control" name="upc" id="upc">
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label for="sellingPrice" class="col-form-label" style="color: #000;">Selling Price:</label>
+                        </div>
+                        <div class="col-auto w-20 my-3">
+                            <input type="number" class="form-control" name="sellingPrice" id="sellingPrice">
+                        </div>
+                        <div class="col-auto w-5 my-3">
+                            <select name="sellingPriceCurency" id="sellingPriceCurency" class="form-control">
+                                <option value="">TRY</option>
+                                <option value="">US Dollar</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label for="costPrice" class="col-form-label" style="color: #000;">Cost Price:</label>
+                        </div>
+                        <div class="col-auto w-20 my-3">
+                            <input type="number" class="form-control" name="costPrice" id="costPrice">
+                        </div>
+                        <div class="col-auto w-5 my-3">
+                            <select name="costPriceCurency" id="costPriceCurency" class="form-control">
+                                <option value="">TRY</option>
+                                <option value="">US Dollar</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-3 align-items-center">
+                        <div class="col-auto w-50 my-3">
+                            <label for="Description" class="col-form-label" style="color: #000;">Description:</label>
+                        </div>
+                        <div class="col-auto w-50 my-3">
+                            <textarea class="form-control" name="description" id="description"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="container col align-items-center text-center">
+                    <div class="row mb-3 align-items-center">
+                        <input type="image" src="/images/admin/drag image here.bmp" alt="Submit" height="100" width="50">
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="save-btn w-25"><i class="bi bi-plus-circle"></i>Add image</button>
+                    </div>
+                    <div class="mb-3">
+                        <button type="button" class="save-btn w-1"><i class="bi bi-plus-circle"></i>Save</button>
+                        <button type="button" class="cancel-btn w-1"><i class="bi bi-plus-circle"></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </section>
+
+
+    <%- include('../includes/end.ejs') %>

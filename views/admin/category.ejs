@@ -1,0 +1,196 @@
+<%- include('../includes/admin-nav.ejs') %>
+
+
+
+    <div class="pg-header">
+        <div class="pagetitle">
+            <h1>
+                <%= pageTitle %>
+            </h1>
+        </div>
+
+
+        <h5 class="d-flex justify-content-end"><button type="button" class="new-btn" data-bs-toggle="modal"
+                data-bs-target="#new-category"><i class="fa-solid fa-circle-plus"></i>New Category</button>
+        </h5>
+
+    </div>
+
+
+    <section class="section">
+        <div class="row">
+
+
+
+            <div class="col-lg-12">
+                <div class="card">
+
+
+                    <div class="card-body" style="margin: 0; padding: 0;">
+                        <div class="modal fade" id="new-category" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title col-md-6 ms-2">New Category</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="category-form" action="/admin/add-category" method="POST">
+
+                                            <div class="mb-3">
+                                                <label for="recipient-name" class="col-form-label">Category
+                                                    Name:</label>
+                                                <input type="text" class="form-control" name="name" id="name">
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="message-text" class="col-form-label">Description:</label>
+                                                <textarea class="form-control" name="description"
+                                                    id="description"></textarea>
+                                            </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="save-btn">Save</button>
+                                        </form>
+                                        <button type="button" class="cancel-btn" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <% if (cates.length> 0) { %>
+
+                            <table class="table">
+
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Action</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% for (let category of cates) { %>
+                                        <% i++%>
+                                            <tr>
+                                                <td scope="row">
+                                                    <strong>
+                                                        <%= i %>
+                                                    </strong>
+                                                </td>
+                                                <td>
+                                                    <%= category.name %>
+                                                </td>
+                                                <td>
+                                                    <%= category.description %>
+                                                </td>
+                                                <td><button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                        data-bs-target="#sub-category"
+                                                        data-bs-whatever="<%= category._id%>">Add
+                                                        Sub Category</button></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button class="cancel-btn" data-bs-toggle="dropdown"
+                                                            style="border-style: none; background-color: white;"
+                                                            type="button"><img style="width: 16px; height: 16px;"
+                                                                src="/images/admin/three-dots-vertical.png" alt="">
+                                                        </button>
+
+                                                        <ul
+                                                            class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                                                            <li class="dropdown-item d-flex align-items-center">
+                                                                <form method="POST" action="delete-category">
+                                                                    <input type="hidden" value="<%= category._id %>"
+                                                                        name="categoryId">
+                                                                    <button type="submit" class="btn">Delete</button>
+                                                                </form>
+                                                            </li>
+                                                            <li class="dropdown-item d-flex align-items-center">
+                                                                <form method="POST" action="delete-category">
+                                                                    <input type="hidden" value="<%= category._id %>"
+                                                                        name="categoryId">
+                                                                    <button type="submit" class="btn">Delete</button>
+                                                                </form>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </td>
+
+
+
+
+
+                                                <div class="modal fade" id="sub-category" tabindex="-1"
+                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">New
+                                                                    Sub Category</h5>
+                                                                <button type="button" class="btn-close"
+                                                                    data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form class="category-form"
+                                                                    action="/admin/add-sub-category" method="POST">
+                                                                    <input type="text" class="form-control"
+                                                                        name="category_id" id="category_id" hidden>
+
+                                                                    <div class="mb-3">
+                                                                        <label for="name"
+                                                                            class="col-form-label">Name:</label>
+                                                                        <input type="text" class="form-control"
+                                                                            name="name" id="name">
+                                                                    </div>
+
+                                                                    <div class="mb-3">
+                                                                        <label for="description"
+                                                                            class="col-form-label">Description:</label>
+                                                                        <textarea class="form-control"
+                                                                            name="description"
+                                                                            id="description"></textarea>
+                                                                    </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="submit" class="save-btn">Save</button>
+                                                                </form>
+                                                                <button type="button" class="cancel-btn"
+                                                                    data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </tr>
+                                            <% } %>
+                                </tbody>
+                            </table>
+                            <% } %>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <script>
+        var exampleModal = document.getElementById('sub-category')
+        exampleModal.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            var recipient = button.getAttribute('data-bs-whatever')
+            // If necessary, you could initiate an AJAX request here
+            // and then do the updating in a callback.
+            //
+            // Update the modal's content.
+            var modalBodyInput = exampleModal.querySelector('.modal-body input')
+
+            modalBodyInput.value = recipient;
+        })
+    </script>
+
+    <%- include('../includes/end.ejs') %>

@@ -1,0 +1,88 @@
+<%- include('../includes/admin-nav.ejs') %>
+
+
+
+    <div class="pg-header">
+        <div class="pagetitle">
+            <h1>
+                <%= pageTitle %>
+            </h1>
+        </div>
+        <a href="#">
+            <h5 class=" d-flex justify-content-end"><button type="button" class="new-btn">Add New</button>
+            </h5>
+        </a>
+    </div>
+
+
+    <section class="section">
+        <div class="row align-items-top">
+
+
+            <div class="col-lg-12">
+                <div class="card-dashboard">
+                    <div class="card-body">
+                        <div class="card">
+
+                            <table id="items" class="display" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Document Number</th>
+                                        <th scope="col">Document Date</th>
+                                        <th scope="col">Warehouse</th>
+                                        <th scope="col">Net Amount</th>
+                                    
+                                        
+                                        <!-- <th scope="col">Data</th>
+                                    <th scope="col">Quantity</th> -->
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <script>
+        $(document).ready(function () {
+            $.noConflict();
+            var dataSet = [];
+            {
+            }
+            $.ajax({
+                url: 'http://localhost:3000/admin/items-json',
+                dataType: "json",
+                error: function (request) {
+                    alert("Error " + request);
+                },
+                success: function (array) {
+                    for (var i = 0; i < array.length; i++) {
+                        dataSet.push([array[i]._id
+                            , array[i].name
+                            , array[i].description
+                            , array[i].userId
+                        ]);
+                    }
+                    var table = $('#stock').DataTable({
+                        data: dataSet,
+                        responsive: true,
+                        scrollX: 200,
+                    });
+                }
+            });
+        });
+    </script>
+
+    <%- include('../includes/end.ejs') %>

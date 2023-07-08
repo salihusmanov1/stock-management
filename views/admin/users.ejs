@@ -1,0 +1,140 @@
+<%- include('../includes/admin-nav.ejs') %>
+
+
+    <div class="pg-header">
+        <div class="pagetitle">
+            <h1>
+                <%= pageTitle %>
+            </h1>
+        </div>
+        <h5 class="d-flex justify-content-end"><button class="new-btn" type="button" data-bs-toggle="modal"
+                data-bs-target="#new-user""><i class=" fa-solid fa-circle-plus"></i>New User</button>
+        </h5>
+    </div>
+
+    <div class="modal fade" id="new-user" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title col-md-6 ms-2">New User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form class="category-form" action="/admin/add-user" method="POST">
+
+                        <div class="mb-3">
+                            <label for="recipient-name" class="col-form-label">Name & Surname:</label>
+                            <input type="text" class="form-control" name="name" id="name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-phone" class="col-form-label">Phone
+                                Number:</label>
+                            <input type="text" class="form-control" name="phone" id="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-email" class="col-form-label">Email
+                            </label>
+                            <input type="email" class="form-control" name="email" id="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-password" class="col-form-label">Password
+                            </label>
+                            <input type="password" class="form-control" name="password" id="password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="recipient-confirm" class="col-form-label">Confirm Password
+                            </label>
+                            <input type="password" class="form-control" name="password-con" id="password-con">
+                        </div>
+                        <div class="mb-3">
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>Open this select menu</option>
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="save-btn">Save</button>
+                    </form>
+                    <button type="button" class="cancel-btn" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="section">
+
+        <div class="row align-items-top">
+
+            <div class="col-lg-12">
+                <div class="card-dashboard">
+                    <div class="card">
+
+                        <table id="items" class="hover row-border" cellspacing="0" width="100%">
+
+                            <thead>
+                                <tr>
+                                    <th scope="col">Item code</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Warehouse</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col" id="action"></th>
+                                    <!-- <th scope="col">Data</th>
+                                    <th scope="col">Quantity</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        $(document).ready(function () {
+            $.noConflict();
+            document.getElementById('action').hidden = true;
+            var dataSet = [];
+            {
+            }
+            $.ajax({
+                url: 'http://localhost:3000/admin/items-json',
+                dataType: "json",
+                error: function (request) {
+                    alert("Error " + request);
+                },
+                success: function (array) {
+                    for (var i = 0; i < array.length; i++) {
+                        dataSet.push([array[i]._id
+                            , array[i].name
+                            , array[i].description
+                            , array[i].userId
+                            , '<button type="button" class="btn"><i class="fa fa-plus"></i></button>'
+                        ]);
+                    }
+                    var table = $('#items').DataTable({
+                        data: dataSet,
+                        responsive: true,
+                        scrollX: 200,
+                        language: {
+                            searchPlaceholder: "Search",
+                            search: "",
+                        },
+                    });
+                }
+            });
+        });
+    </script>
+
+    <%- include('../includes/end.ejs') %>
