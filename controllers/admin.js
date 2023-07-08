@@ -63,26 +63,7 @@ exports.postAddCategory = (req, res, next) => {
     });
 };
 
-// exports.postAddSubCategory = (req, res, next) => {
-//   const name = req.body.name;
-//   const description = req.body.description;
-//   const subcategory = new SubCategory({
-//     name: name,
-//     description: description,
-//     userId: req.user
-//   });
-//   subcategory
-//     .save()
-//     .then(result => {
-//       // console.log(result);
-//       console.log('Created Sub Category');
-//       res.redirect('/admin/category');
-//                  // next();
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// };
+
 
 
 exports.postAddSubCategory = (req, res, next) => {
@@ -109,17 +90,7 @@ exports.postAddSubCategory = (req, res, next) => {
 };
 
 
-// exports.getWarehouse = (req, res, next) => {
-//   if (!req.session.isLoggedIn) {
-//     return res.redirect('/login')
-//   }
-//   res.render('admin/warehouse', {
-//     pageTitle: 'Warehouse',
-//     path: '/admin/warehouse',
-//     editing:false,
-//     isAuthenticated: req.session.isLoggedIn
-//   });
-// };
+
 
 exports.getWarehouses = (req, res, next) => {
   Warehouse.find()
